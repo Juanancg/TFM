@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmi:id="_vzCH0OgqEem-w_aM7Yvvsw" type="UseCase" name="Inicializacion" measurementUnit="Pixel">
+  <children xsi:type="notation:Shape" xmi:id="_02aiIegqEem-w_aM7Yvvsw" type="Actor_Shape">
+    <children xsi:type="notation:DecorationNode" xmi:id="_02aiI-gqEem-w_aM7Yvvsw" type="Actor_NameLabel">
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_02aiJOgqEem-w_aM7Yvvsw" y="15"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_02aiJegqEem-w_aM7Yvvsw" type="Actor_StereotypeLabel">
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_02aiJugqEem-w_aM7Yvvsw" x="20" y="100"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_02aiJ-gqEem-w_aM7Yvvsw" type="Actor_QualifiedNameLabel">
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_02aiKOgqEem-w_aM7Yvvsw" x="20" y="80"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_02aiKegqEem-w_aM7Yvvsw" type="Actor_FloatingNameLabel">
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_02aiKugqEem-w_aM7Yvvsw" y="15"/>
+    </children>
+    <element href="TFM%20Diagrams.uml#_02aiIOgqEem-w_aM7Yvvsw"/>
+    <layoutConstraint xsi:type="notation:Bounds" xmi:id="_02aiIugqEem-w_aM7Yvvsw" x="339" y="333"/>
+  </children>
+  <children xsi:type="notation:Shape" xmi:id="_1xN9gegqEem-w_aM7Yvvsw" type="UseCase_Shape">
+    <children xsi:type="notation:DecorationNode" xmi:id="_1xN9g-gqEem-w_aM7Yvvsw" type="UseCase_NameLabel"/>
+    <children xsi:type="notation:DecorationNode" xmi:id="_1xN9hOgqEem-w_aM7Yvvsw" type="UseCase_FloatingNameLabel">
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_1xN9hegqEem-w_aM7Yvvsw" y="15"/>
+    </children>
+    <children xsi:type="notation:BasicCompartment" xmi:id="_1xN9hugqEem-w_aM7Yvvsw" type="UseCase_ExtensionPointCompartment">
+      <styles xsi:type="notation:SortingStyle" xmi:id="_1xN9h-gqEem-w_aM7Yvvsw"/>
+      <styles xsi:type="notation:FilteringStyle" xmi:id="_1xN9iOgqEem-w_aM7Yvvsw"/>
+      <layoutConstraint xsi:type="notation:Bounds" xmi:id="_1xN9iegqEem-w_aM7Yvvsw"/>
+    </children>
+    <element href="TFM%20Diagrams.uml#_1xN9gOgqEem-w_aM7Yvvsw"/>
+    <layoutConstraint xsi:type="notation:Bounds" xmi:id="_1xN9gugqEem-w_aM7Yvvsw" x="520" y="240"/>
+  </children>
+  <styles xsi:type="notation:StringValueStyle" xmi:id="_vzCH0egqEem-w_aM7Yvvsw" name="diagram_compatibility_version" stringValue="1.4.0"/>
+  <styles xsi:type="notation:DiagramStyle" xmi:id="_vzCH0ugqEem-w_aM7Yvvsw"/>
+  <styles xsi:type="style:PapyrusDiagramStyle" xmi:id="_vzCH0-gqEem-w_aM7Yvvsw" diagramKindId="org.eclipse.papyrus.sysml14.diagram.useCase">
+    <owner href="TFM%20Diagrams.uml#_rX9qsOgqEem-w_aM7Yvvsw"/>
+  </styles>
+  <element href="TFM%20Diagrams.uml#_rX9qsOgqEem-w_aM7Yvvsw"/>
+</notation:Diagram>
