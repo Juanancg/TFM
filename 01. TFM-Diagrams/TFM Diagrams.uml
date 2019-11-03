@@ -8,6 +8,12 @@
       <importedPackage xmi:type="uml:Package" href="pathmap://SysML14_LIBRARIES/SysML-Standard-Library.uml#SysML.package_packagedElement_Libraries"/>
     </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_motGQOgqEem-w_aM7Yvvsw" name="Especificacion">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_oGZrIP5WEemjY_NiFMphrg">
+        <body>Ejecuta en</body>
+      </ownedComment>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_tN0Q4P5WEemjY_NiFMphrg">
+        <body>Ejecuta en</body>
+      </ownedComment>
       <packagedElement xmi:type="uml:Package" xmi:id="_rX9qsOgqEem-w_aM7Yvvsw" name="Percepcion">
         <packagedElement xmi:type="uml:Actor" xmi:id="_02aiIOgqEem-w_aM7Yvvsw" name="Operador"/>
         <packagedElement xmi:type="uml:UseCase" xmi:id="_1xN9gOgqEem-w_aM7Yvvsw" name="Encendido"/>
@@ -55,6 +61,30 @@
         </eAnnotations>
         <ownedEnd xmi:type="uml:Property" xmi:id="_sobNMuhPEemkW4AONkl26A" name="torreta" type="_RZ-7YOhOEemkW4AONkl26A" aggregation="composite" association="_soYJ4OhPEemkW4AONkl26A"/>
         <ownedEnd xmi:type="uml:Property" xmi:id="_sobNM-hPEemkW4AONkl26A" name="robot movil" type="_P3UNkOg0EemkW4AONkl26A" association="_soYJ4OhPEemkW4AONkl26A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xJiMcP4-EemjY_NiFMphrg" name="Ultrasonidos"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_f7R-cP5DEemjY_NiFMphrg" memberEnd="_f7TMkf5DEemjY_NiFMphrg _f7TzoP5DEemjY_NiFMphrg">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_f7SlgP5DEemjY_NiFMphrg" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f7TMkP5DEemjY_NiFMphrg" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_f7TMkf5DEemjY_NiFMphrg" name="ultrasonidos" type="_xJiMcP4-EemjY_NiFMphrg" aggregation="composite" association="_f7R-cP5DEemjY_NiFMphrg"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_f7TzoP5DEemjY_NiFMphrg" name="torreta" type="_RZ-7YOhOEemkW4AONkl26A" association="_f7R-cP5DEemjY_NiFMphrg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_4YaWgP5VEemjY_NiFMphrg" name="Navegación" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_8_6GEP5VEemjY_NiFMphrg" name="Percepción" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_gLRAkP5WEemjY_NiFMphrg" memberEnd="_gLSOsf5WEemjY_NiFMphrg _gLTc0P5WEemjY_NiFMphrg">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gLRnoP5WEemjY_NiFMphrg" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gLSOsP5WEemjY_NiFMphrg" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_gLSOsf5WEemjY_NiFMphrg" name="percepción" type="_8_6GEP5VEemjY_NiFMphrg" association="_gLRAkP5WEemjY_NiFMphrg"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_gLTc0P5WEemjY_NiFMphrg" name="microcontrolador" type="_C3osQOhOEemkW4AONkl26A" association="_gLRAkP5WEemjY_NiFMphrg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_g2lOcP5WEemjY_NiFMphrg" memberEnd="_g2l1gv5WEemjY_NiFMphrg _g2mckP5WEemjY_NiFMphrg">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g2l1gP5WEemjY_NiFMphrg" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_g2l1gf5WEemjY_NiFMphrg" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_g2l1gv5WEemjY_NiFMphrg" name="navegación" type="_4YaWgP5VEemjY_NiFMphrg" association="_g2lOcP5WEemjY_NiFMphrg"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_g2mckP5WEemjY_NiFMphrg" name="microcontrolador" type="_C3osQOhOEemkW4AONkl26A" association="_g2lOcP5WEemjY_NiFMphrg"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_oP9X8OgqEem-w_aM7Yvvsw" name="Diseño"/>
@@ -125,4 +155,5 @@
   <Blocks:Block xmi:id="_RaEa8OhOEemkW4AONkl26A" base_Class="_RZ-7YOhOEemkW4AONkl26A"/>
   <Blocks:Block xmi:id="_kRBS0OhOEemkW4AONkl26A" base_Class="_kQ5-EOhOEemkW4AONkl26A"/>
   <Blocks:Block xmi:id="_lcV2cOhOEemkW4AONkl26A" base_Class="_lcQW4OhOEemkW4AONkl26A"/>
+  <Blocks:Block xmi:id="_xJl20P4-EemjY_NiFMphrg" base_Class="_xJiMcP4-EemjY_NiFMphrg"/>
 </xmi:XMI>
