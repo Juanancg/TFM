@@ -17,6 +17,13 @@
       <packagedElement xmi:type="uml:Package" xmi:id="_rX9qsOgqEem-w_aM7Yvvsw" name="Percepcion">
         <packagedElement xmi:type="uml:Actor" xmi:id="_02aiIOgqEem-w_aM7Yvvsw" name="Operador"/>
         <packagedElement xmi:type="uml:UseCase" xmi:id="_1xN9gOgqEem-w_aM7Yvvsw" name="Encendido"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_P5Q-YP8qEemz_e-V0eovcQ" memberEnd="_P5Y6MP8qEemz_e-V0eovcQ _P5aIUP8qEemz_e-V0eovcQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_P5XsEP8qEemz_e-V0eovcQ" source="org.eclipse.papyrus">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P5YTIP8qEemz_e-V0eovcQ" key="nature" value="UML_Nature"/>
+          </eAnnotations>
+          <ownedEnd xmi:type="uml:Property" xmi:id="_P5Y6MP8qEemz_e-V0eovcQ" name="encendido" type="_1xN9gOgqEem-w_aM7Yvvsw" association="_P5Q-YP8qEemz_e-V0eovcQ"/>
+          <ownedEnd xmi:type="uml:Property" xmi:id="_P5aIUP8qEemz_e-V0eovcQ" name="operador" type="_02aiIOgqEem-w_aM7Yvvsw" association="_P5Q-YP8qEemz_e-V0eovcQ"/>
+        </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_P3UNkOg0EemkW4AONkl26A" name="ROBOT MOVIL"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_SR7O0Og0EemkW4AONkl26A" name="Infrarrojo"/>
@@ -85,6 +92,15 @@
         </eAnnotations>
         <ownedEnd xmi:type="uml:Property" xmi:id="_g2l1gv5WEemjY_NiFMphrg" name="navegación" type="_4YaWgP5VEemjY_NiFMphrg" association="_g2lOcP5WEemjY_NiFMphrg"/>
         <ownedEnd xmi:type="uml:Property" xmi:id="_g2mckP5WEemjY_NiFMphrg" name="microcontrolador" type="_C3osQOhOEemkW4AONkl26A" association="_g2lOcP5WEemjY_NiFMphrg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_EjZSUP8qEemz_e-V0eovcQ" name="Navegación"/>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_F2JToP8qEemz_e-V0eovcQ" name="Pedir datos"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_jFdtgP8qEemz_e-V0eovcQ" memberEnd="_jFeUkv8qEemz_e-V0eovcQ _jFe7oP8qEemz_e-V0eovcQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jFeUkP8qEemz_e-V0eovcQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jFeUkf8qEemz_e-V0eovcQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_jFeUkv8qEemz_e-V0eovcQ" name="pedir datos" type="_F2JToP8qEemz_e-V0eovcQ" association="_jFdtgP8qEemz_e-V0eovcQ"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_jFe7oP8qEemz_e-V0eovcQ" name="navegación" type="_EjZSUP8qEemz_e-V0eovcQ" association="_jFdtgP8qEemz_e-V0eovcQ"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_oP9X8OgqEem-w_aM7Yvvsw" name="Diseño"/>
