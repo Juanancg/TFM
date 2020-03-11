@@ -1,15 +1,6 @@
-//============================================================================
-// Name        : main.cpp
-// Author      : 
-// Version     :
-// Copyright   : 
-// Description : Hello World in C++, Ansi-style
-//============================================================================
-
-#include "basic_functions.h"
+#include "Utils/basic_functions.h"
 #include "Components/StateQueue.h"
-
-using namespace std;
+#include <iostream>
 
 int main() {
 

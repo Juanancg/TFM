@@ -1,6 +1,6 @@
 #include "basic_functions.h"
 
-xState move(const xState &x_state, Action u) {
+xState move(const xState x_state, Action u) {
 
 	xState output = x_state;
 

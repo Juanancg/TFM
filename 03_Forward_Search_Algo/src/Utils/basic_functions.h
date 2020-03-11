@@ -3,7 +3,7 @@
 
 #include "Components/Grid.h"
 
-xState move(const xState &x_state, Action u);
+xState move(const xState x_state, Action u);
 bool checkXLimits(int x);
 bool checkYLimits(int y);
 
