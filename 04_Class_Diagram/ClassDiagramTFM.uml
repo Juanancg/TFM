@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_v629wGxmEeqgtZDkFPJyfQ" name="ClassDiagramTFM">
+  <ownedComment xmi:type="uml:Comment" xmi:id="_XlAlgGxsEeqgtZDkFPJyfQ">
+    <body>En getPosition, no se si se va a poder devolver el &quot;angle&quot;, al menos no hasta que tengamos la IMU</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="__b7WkGx0EeqgtZDkFPJyfQ">
+    <body>getPosition y stop lo he sacado de los requisitos&#xD;
+</body>
+  </ownedComment>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_v8CpgGxmEeqgtZDkFPJyfQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_6IM7gGxmEeqgtZDkFPJyfQ" name="Class2">
+    <ownedBehavior xmi:type="uml:FunctionBehavior" xmi:id="_dDpKsGxnEeqgtZDkFPJyfQ" name="asd" specification="_dSgtIGxnEeqgtZDkFPJyfQ" body="">
+      <language>C++</language>
+    </ownedBehavior>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_dSgtIGxnEeqgtZDkFPJyfQ" name="goTo" method="_dDpKsGxnEeqgtZDkFPJyfQ" bodyCondition="_dSgtIWxnEeqgtZDkFPJyfQ">
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_dSgtIWxnEeqgtZDkFPJyfQ" name="sads"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_1XWwwGxoEeqgtZDkFPJyfQ" name="goTo">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jiYL4GxrEeqgtZDkFPJyfQ" name="x">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_mIsG0GxrEeqgtZDkFPJyfQ" name="y">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_pTAGsGxrEeqgtZDkFPJyfQ" name="angle">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Mufu8GxsEeqgtZDkFPJyfQ" name="reached" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_zxdCkGxrEeqgtZDkFPJyfQ" name="getPosition">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_AawFYGxsEeqgtZDkFPJyfQ" name="x" direction="out">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_QL-icGxsEeqgtZDkFPJyfQ" name="y" direction="out">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Wv7XoGxsEeqgtZDkFPJyfQ" name="angle" direction="out">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_df0XEGxsEeqgtZDkFPJyfQ" name="stop"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_WA0SEGxwEeqgtZDkFPJyfQ" name="Perception">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_8HWkQGxwEeqgtZDkFPJyfQ" name="getDistanceRightIR" visibility="public">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Ik8GUGxxEeqgtZDkFPJyfQ" name="distance" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_8d7RMGxwEeqgtZDkFPJyfQ" name="getDistanceLeftIR">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_x9XxoGxyEeqgtZDkFPJyfQ" name="distance" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_9X5mIGxwEeqgtZDkFPJyfQ" name="getDistanceBackIR">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_2BWkcGxyEeqgtZDkFPJyfQ" name="distance" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_9leIEGxwEeqgtZDkFPJyfQ" name="getDistanceLidar">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_4pfrYGxyEeqgtZDkFPJyfQ" name="distance" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_SSyZwGxzEeqgtZDkFPJyfQ" name="angle">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_91KJ4GxwEeqgtZDkFPJyfQ" name="getDistanceUltraSonic">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_fASnIGxzEeqgtZDkFPJyfQ" name="angle">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_hYOH0GxzEeqgtZDkFPJyfQ" name="distance" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+</uml:Model>
