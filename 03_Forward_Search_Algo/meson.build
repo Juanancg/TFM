@@ -1,4 +1,4 @@
-project('TFM_Planning_Algo','cpp', default_options: [])
+project('TFM_Planning_Algo','cpp')
 
 target_name = 'PlanningAlgorithm'
 
@@ -24,10 +24,15 @@ src = [
 	src_Main
 ]
 
-executable(target_name, src, include_directories:inc)
+executable(target_name, src, include_directories:inc, install:true)
 
 gtest_dep = dependency('gtest', main: true, required: false)
-src_unit_test = 'Unit_Test/tests.cpp'
+
+src_unit_test = [
+	'Unit_Test/tests_basic_functions.cpp',
+	'Unit_Test/tests.cpp'
+]
+
 if gtest_dep.found()
  	e = executable('test_'+target_name, src_unit_test, dependencies: gtest_dep, install : true, install_dir : 'bin_ut')
  	test('gtest ' + target_name, e)

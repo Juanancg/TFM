@@ -24,7 +24,7 @@ enum Action {
 enum State {
 	E_STATE_NOT_CREATED,
 	E_STATE_UNVISITED,
-	E_STATE_DEAD,
+	E_STATE_UNABLE,
 	E_STATE_VISITED
 };
 

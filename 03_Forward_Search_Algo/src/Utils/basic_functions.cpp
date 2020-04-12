@@ -1,6 +1,9 @@
-#include "basic_functions.h"
+#include "src/Utils/basic_functions.h"
+#include <cmath>
+#include <iostream>
 
 xState move(const xState x_state, Action u) {
+
 
 	xState output = x_state;
 
@@ -29,6 +32,7 @@ xState move(const xState x_state, Action u) {
 			break;
 	}
 
+	std::cout << "[MOVE] Input: " << x_state.x_ << "," <<  x_state.y_ << "\t Output: " << output.x_ << "," <<  output.y_ << std::endl;
 	return output;
 
 }
@@ -60,3 +64,10 @@ bool checkYLimits(int y) {
 
 	return returnValue;
 }
+
+double get_distance(const xState point1, const xState point2) {
+	std::cout << point1.x_ << " - " << point2.x_ << "  +  " << point1.y_ << " - " << point2.y_ << std::endl;
+ 	return sqrt(pow(point1.x_ - point2.x_, 2) + pow(point1.y_ - point2.y_, 2));
+}
+
+

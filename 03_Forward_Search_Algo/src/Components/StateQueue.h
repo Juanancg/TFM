@@ -2,8 +2,8 @@
 #define COMPONENTS_STATEQUEUE_H_
 
 #include <array>
-#include "xState.h"
-#include "Types.h"
+#include "src/Components/xState.h"
+#include "src/Components/Types.h"
 
 class StateQueue {
 
@@ -14,6 +14,7 @@ public:
 
 	void add_state(xState x);
 	xState get_first();
+	xState get_first(const xState goalState);
 	unsigned int get_length();
 	void printQueue();
 	void reset();

@@ -3,8 +3,8 @@
 
 #include <array>
 
-#include "Types.h"
-#include "xState.h"
+#include "src/Components/Types.h"
+#include "src/Components/xState.h"
 
 class Grid {
 public:

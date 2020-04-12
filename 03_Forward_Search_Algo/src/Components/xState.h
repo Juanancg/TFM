@@ -1,7 +1,7 @@
 #ifndef COMPONENTS_XSTATE_H_
 #define COMPONENTS_XSTATE_H_
 
-#include "Types.h"
+#include "src/Components/Types.h"
 
 class xState {
 public:

@@ -9,7 +9,7 @@ int main() {
 	grid.printGrid();
 
 	xState x_ini(0, 0, E_STATE_VISITED);
-	const xState x_goal(4, 4, E_STATE_VISITED);
+	const xState x_goal(5, 7, E_STATE_VISITED);
 	std::cout << "State Goal = " << x_goal.x_ << ", " << x_goal.y_ << std::endl;
 
 	grid.grid_container[0][0] = x_ini;
@@ -20,9 +20,11 @@ int main() {
 	queue.add_state(x_ini);
 
 	while (queue.get_length() != 0) {
-		//std::cout << "Iterating... " << std::endl;
+		std::cout << std::endl << "Iterating... " << std::endl;
 		xState x;
-		x = queue.get_first();
+		//x = queue.get_first();
+		x = queue.get_first(x_goal);
+		path.add_state(x);
 	//	std::cout << x.x_ << ", " << x.y_ << std::endl;
 
 		if (x.x_ == x_goal.x_ && x.y_ == x_goal.y_) {
@@ -37,10 +39,11 @@ int main() {
 
 			Action action = static_cast<Action>(i);
 			xState x_prima = move(x, action);
-			path.add_state(x_prima); // Saves the path to the goal
+			//path.add_state(x_prima); // Saves the path to the goal
 
 			if (!grid.isVisited(x_prima)) {
-				grid.markStateAsVisited(x_prima);
+				grid.markStateAsVisited(x_prima); // Change name to updateGridStateAsVisited
+				x_prima.state_ = E_STATE_VISITED;
 				queue.add_state(x_prima);
 
 			} else {

@@ -26,7 +26,7 @@ char xState::printState() {
 		case State::E_STATE_UNVISITED:
 			returnValue = 'U';
 			break;
-		case State::E_STATE_DEAD:
+		case State::E_STATE_UNABLE:
 			returnValue = 'D';
 			break;
 		case State::E_STATE_VISITED:
