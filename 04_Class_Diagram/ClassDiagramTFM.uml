@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_v629wGxmEeqgtZDkFPJyfQ" name="ClassDiagramTFM">
-  <ownedComment xmi:type="uml:Comment" xmi:id="_XlAlgGxsEeqgtZDkFPJyfQ">
-    <body>En getPosition, no se si se va a poder devolver el &quot;angle&quot;, al menos no hasta que tengamos la IMU</body>
-  </ownedComment>
-  <ownedComment xmi:type="uml:Comment" xmi:id="__b7WkGx0EeqgtZDkFPJyfQ">
-    <body>getPosition y stop lo he sacado de los requisitos&#xD;
-</body>
-  </ownedComment>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_v629wGxmEeqgtZDkFPJyfQ" name="ClassDiagramTFM">
   <packageImport xmi:type="uml:PackageImport" xmi:id="_v8CpgGxmEeqgtZDkFPJyfQ">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
@@ -45,11 +38,6 @@
     <ownedOperation xmi:type="uml:Operation" xmi:id="_df0XEGxsEeqgtZDkFPJyfQ" name="stop"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_WA0SEGxwEeqgtZDkFPJyfQ" name="Perception">
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_8HWkQGxwEeqgtZDkFPJyfQ" name="getDistanceRightIR" visibility="public">
-      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Ik8GUGxxEeqgtZDkFPJyfQ" name="distance" direction="return">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
-      </ownedParameter>
-    </ownedOperation>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_8d7RMGxwEeqgtZDkFPJyfQ" name="getDistanceLeftIR">
       <ownedParameter xmi:type="uml:Parameter" xmi:id="_x9XxoGxyEeqgtZDkFPJyfQ" name="distance" direction="return">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
@@ -76,5 +64,124 @@
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
       </ownedParameter>
     </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_jrfQgHZvEeqHmpp0YaLf5A" name="getDistanceLeftIR">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_5Wj10HZvEeqHmpp0YaLf5A" name="distance" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+    </ownedOperation>
   </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_eFLkwHZuEeqHmpp0YaLf5A" visibility="private" memberEnd="_eFQdQHZuEeqHmpp0YaLf5A _eFaOQHZuEeqHmpp0YaLf5A">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_eFPPIHZuEeqHmpp0YaLf5A" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_eFPPIXZuEeqHmpp0YaLf5A" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_eFQdQHZuEeqHmpp0YaLf5A" type="_WA0SEGxwEeqgtZDkFPJyfQ" association="_eFLkwHZuEeqHmpp0YaLf5A"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_eFaOQHZuEeqHmpp0YaLf5A" name="class2" type="_6IM7gGxmEeqgtZDkFPJyfQ" association="_eFLkwHZuEeqHmpp0YaLf5A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_uq5Z0HZuEeqHmpp0YaLf5A" name="Government"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Cs6WoHZvEeqHmpp0YaLf5A" name="Control"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_J7So4HZvEeqHmpp0YaLf5A" memberEnd="_J7TP8nZvEeqHmpp0YaLf5A _J7UeEHZvEeqHmpp0YaLf5A">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_J7TP8HZvEeqHmpp0YaLf5A" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_J7TP8XZvEeqHmpp0YaLf5A" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_J7TP8nZvEeqHmpp0YaLf5A" name="perception" type="_WA0SEGxwEeqgtZDkFPJyfQ" association="_J7So4HZvEeqHmpp0YaLf5A"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_J7UeEHZvEeqHmpp0YaLf5A" name="control" type="_Cs6WoHZvEeqHmpp0YaLf5A" association="_J7So4HZvEeqHmpp0YaLf5A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_N5PsMHZvEeqHmpp0YaLf5A" memberEnd="_N5Q6UnZvEeqHmpp0YaLf5A _N5SIcHZvEeqHmpp0YaLf5A">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_N5Q6UHZvEeqHmpp0YaLf5A" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_N5Q6UXZvEeqHmpp0YaLf5A" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_N5Q6UnZvEeqHmpp0YaLf5A" name="control" type="_Cs6WoHZvEeqHmpp0YaLf5A" association="_N5PsMHZvEeqHmpp0YaLf5A"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_N5SIcHZvEeqHmpp0YaLf5A" name="class2" type="_6IM7gGxmEeqgtZDkFPJyfQ" association="_N5PsMHZvEeqHmpp0YaLf5A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Op6UIHZvEeqHmpp0YaLf5A" memberEnd="_Op67MXZvEeqHmpp0YaLf5A _Op7iQHZvEeqHmpp0YaLf5A">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Op6UIXZvEeqHmpp0YaLf5A" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Op67MHZvEeqHmpp0YaLf5A" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_Op67MXZvEeqHmpp0YaLf5A" name="class2" type="_6IM7gGxmEeqgtZDkFPJyfQ" association="_Op6UIHZvEeqHmpp0YaLf5A"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_Op7iQHZvEeqHmpp0YaLf5A" name="government" type="_uq5Z0HZuEeqHmpp0YaLf5A" association="_Op6UIHZvEeqHmpp0YaLf5A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_K0zmkHc6Eeq16MLZcli9DA" name="getDistanceLidar">
+    <region xmi:type="uml:Region" xmi:id="_T3iLUHc6Eeq16MLZcli9DA" name="Region1">
+      <transition xmi:type="uml:Transition" xmi:id="_A8fAQHgvEeqQ18sxz73w2A" source="_IpsOcHgtEeqQ18sxz73w2A" target="_yRDtoHguEeqQ18sxz73w2A"/>
+      <transition xmi:type="uml:Transition" xmi:id="_LvT0MHgwEeqQ18sxz73w2A" name="ValidAngleTrue" source="_tfK2gHgvEeqQ18sxz73w2A" target="_7YFuIHgvEeqQ18sxz73w2A"/>
+      <transition xmi:type="uml:Transition" xmi:id="_Uc_WAHgwEeqQ18sxz73w2A" name="ValidAngleFalse" source="_tfK2gHgvEeqQ18sxz73w2A" target="_SUta4HgwEeqQ18sxz73w2A"/>
+      <transition xmi:type="uml:Transition" xmi:id="_NETe8Hg1EeqQ18sxz73w2A" source="_yRDtoHguEeqQ18sxz73w2A" target="_mjO_IHgvEeqQ18sxz73w2A"/>
+      <transition xmi:type="uml:Transition" xmi:id="_SyCd0Hg1EeqQ18sxz73w2A" name="Repeat" source="_mjO_IHgvEeqQ18sxz73w2A" target="_mjO_IHgvEeqQ18sxz73w2A"/>
+      <transition xmi:type="uml:Transition" xmi:id="_mrO5AHg5EeqQ18sxz73w2A" name="NumSignals=3" source="_mjO_IHgvEeqQ18sxz73w2A" target="_yp7ccHg1EeqQ18sxz73w2A"/>
+      <transition xmi:type="uml:Transition" xmi:id="_zwnooHg-EeqQ18sxz73w2A" source="_yp7ccHg1EeqQ18sxz73w2A" target="_f0r7IHg9EeqQ18sxz73w2A"/>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_IpsOcHgtEeqQ18sxz73w2A" name="Llamada a la funcion"/>
+      <subvertex xmi:type="uml:State" xmi:id="_yRDtoHguEeqQ18sxz73w2A" name="MoveServo">
+        <doActivity xmi:type="uml:FunctionBehavior" xmi:id="_iL6ZkHgvEeqQ18sxz73w2A" name="Mandar señal PWM y wait()"/>
+        <entry xmi:type="uml:FunctionBehavior" xmi:id="_YB41kHgvEeqQ18sxz73w2A" name="Pasar Angulo a pulsos " language="" body=""/>
+      </subvertex>
+      <subvertex xmi:type="uml:State" xmi:id="_mjO_IHgvEeqQ18sxz73w2A" name="SendSignalLidar">
+        <doActivity xmi:type="uml:FunctionBehavior" xmi:id="_1iOUsHg0EeqQ18sxz73w2A" name="wait() hasta que vuelva"/>
+        <entry xmi:type="uml:FunctionBehavior" xmi:id="_u6MQwHg0EeqQ18sxz73w2A" name="SendSignal &amp; activar timer"/>
+        <exit xmi:type="uml:FunctionBehavior" xmi:id="_9dPDcHg0EeqQ18sxz73w2A" name="Calcular distancia &amp; guardar resultado"/>
+      </subvertex>
+      <subvertex xmi:type="uml:State" xmi:id="_tfK2gHgvEeqQ18sxz73w2A" name="CheckInputAngle">
+        <doActivity xmi:type="uml:FunctionBehavior" xmi:id="_3aIDwHgvEeqQ18sxz73w2A" name="Check si angulo valido (-90+90)"/>
+        <entry xmi:type="uml:FunctionBehavior" xmi:id="_y2lnIHgvEeqQ18sxz73w2A" name="Pasar Angulo a pulsos"/>
+      </subvertex>
+      <subvertex xmi:type="uml:State" xmi:id="_7YFuIHgvEeqQ18sxz73w2A" name="MoveServo1">
+        <doActivity xmi:type="uml:FunctionBehavior" xmi:id="_CEgi0HgwEeqQ18sxz73w2A" name="wait()"/>
+        <entry xmi:type="uml:FunctionBehavior" xmi:id="_AkuLEHgwEeqQ18sxz73w2A" name="Mandar señal PWM"/>
+      </subvertex>
+      <subvertex xmi:type="uml:FinalState" xmi:id="_SUta4HgwEeqQ18sxz73w2A" name="return"/>
+      <subvertex xmi:type="uml:State" xmi:id="_yp7ccHg1EeqQ18sxz73w2A" name="ComputeMeanDistance">
+        <entry xmi:type="uml:FunctionBehavior" xmi:id="_8VzE0Hg1EeqQ18sxz73w2A" name="Calcular la media entre las 3 medidas"/>
+      </subvertex>
+      <subvertex xmi:type="uml:FinalState" xmi:id="_f0r7IHg9EeqQ18sxz73w2A" name="return Distance"/>
+    </region>
+  </packagedElement>
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_A7KRsH2tEeqLtO18OMgg9Q" name="Planning">
+    <region xmi:type="uml:Region" xmi:id="_B1CgAH2tEeqLtO18OMgg9Q" name="Region1">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_1_hswH27EeqLtO18OMgg9Q">
+        <body>Action = movimiento a realizar:&#xD;
+Action = 0 -> x + 1 (Derecha)&#xD;
+Action = 1 -> y + 1 (Arriba)&#xD;
+Action = 2 -> x - 1 (Izquierda)&#xD;
+Action = 3 -> y - 1 (Abajo)</body>
+      </ownedComment>
+      <transition xmi:type="uml:Transition" xmi:id="__YxccH2tEeqLtO18OMgg9Q" name="Destino alcanzable" source="_U7yucH2tEeqLtO18OMgg9Q" target="_7Kv80H2tEeqLtO18OMgg9Q"/>
+      <transition xmi:type="uml:Transition" xmi:id="_D4xc4H2uEeqLtO18OMgg9Q" source="_G43mQH2tEeqLtO18OMgg9Q" target="_U7yucH2tEeqLtO18OMgg9Q"/>
+      <transition xmi:type="uml:Transition" xmi:id="_HTt5wH2uEeqLtO18OMgg9Q" name="Destino no alcanzable" source="_U7yucH2tEeqLtO18OMgg9Q" target="_Fh7zEH2uEeqLtO18OMgg9Q"/>
+      <transition xmi:type="uml:Transition" xmi:id="_i6dMQH2uEeqLtO18OMgg9Q" source="_7Kv80H2tEeqLtO18OMgg9Q" target="_eywXEH2uEeqLtO18OMgg9Q"/>
+      <transition xmi:type="uml:Transition" xmi:id="_xWVxkH2vEeqLtO18OMgg9Q" name="temp_cell != Destination" source="_eywXEH2uEeqLtO18OMgg9Q" target="_ouwQsH2vEeqLtO18OMgg9Q"/>
+      <transition xmi:type="uml:Transition" xmi:id="_6dUkMH2vEeqLtO18OMgg9Q" name="temp_cell == Destination" source="_eywXEH2uEeqLtO18OMgg9Q" target="_3Ni1gH2vEeqLtO18OMgg9Q"/>
+      <transition xmi:type="uml:Transition" xmi:id="_jee-AH28EeqLtO18OMgg9Q" name="Accion &lt; 4" source="_ouwQsH2vEeqLtO18OMgg9Q" target="_WgqcsH28EeqLtO18OMgg9Q"/>
+      <transition xmi:type="uml:Transition" xmi:id="_AmbkkH29EeqLtO18OMgg9Q" name="Accion = 4" source="_ouwQsH2vEeqLtO18OMgg9Q" target="_eywXEH2uEeqLtO18OMgg9Q"/>
+      <transition xmi:type="uml:Transition" xmi:id="_xpywsH29EeqLtO18OMgg9Q" name="Celda obtenida fuera de los limites" source="_WgqcsH28EeqLtO18OMgg9Q" target="_ouwQsH2vEeqLtO18OMgg9Q"/>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_G43mQH2tEeqLtO18OMgg9Q" name="LLamada Funcion"/>
+      <subvertex xmi:type="uml:State" xmi:id="_U7yucH2tEeqLtO18OMgg9Q" name="CheckDestination">
+        <entry xmi:type="uml:FunctionBehavior" xmi:id="_x1ePgH2tEeqLtO18OMgg9Q" name="Comprobar dentro del mapa si el destino es alcanzable (Hacer Diagrama de estados de esta funcion)"/>
+      </subvertex>
+      <subvertex xmi:type="uml:State" xmi:id="_7Kv80H2tEeqLtO18OMgg9Q" name="CreateQueue &amp; Path">
+        <doActivity xmi:type="uml:FunctionBehavior" xmi:id="_W8-toH2uEeqLtO18OMgg9Q" name="Inicializar queue con posicion inicial"/>
+        <entry xmi:type="uml:FunctionBehavior" xmi:id="_PkUeAH2uEeqLtO18OMgg9Q" name="Crear dos arrays de &quot;celdas&quot;, uno para ir guardando el path final(&quot;Path&quot;) y otro para ir guardando posibles movimientos(&quot;QUEUE&quot;)"/>
+      </subvertex>
+      <subvertex xmi:type="uml:FinalState" xmi:id="_Fh7zEH2uEeqLtO18OMgg9Q" name="return False"/>
+      <subvertex xmi:type="uml:State" xmi:id="_eywXEH2uEeqLtO18OMgg9Q" name="GetNearElement from QUEUE">
+        <doActivity xmi:type="uml:FunctionBehavior" xmi:id="_BPi7YH2vEeqLtO18OMgg9Q" name="Obtener distancias de los elementos de QUEUE y sacar aquel con la menor distancia hacia el objetivo"/>
+        <entry xmi:type="uml:FunctionBehavior" xmi:id="_6U-V8H2uEeqLtO18OMgg9Q" name="Declarar temp_dist y minimum_distance"/>
+        <exit xmi:type="uml:FunctionBehavior" xmi:id="_GNFMYH2vEeqLtO18OMgg9Q" name="Guardar celda mas cercana al objetivo en variable (&quot;temp_cell&quot;) y dentro de PATH"/>
+      </subvertex>
+      <subvertex xmi:type="uml:State" xmi:id="_ouwQsH2vEeqLtO18OMgg9Q" name="Definir Accion">
+        <entry xmi:type="uml:FunctionBehavior" xmi:id="_gNa14H28EeqLtO18OMgg9Q" name="Definir accion a realizar (Accion+1)"/>
+      </subvertex>
+      <subvertex xmi:type="uml:FinalState" xmi:id="_3Ni1gH2vEeqLtO18OMgg9Q" name="return True &amp; PATH"/>
+      <subvertex xmi:type="uml:State" xmi:id="_WgqcsH28EeqLtO18OMgg9Q" name="move(Action)">
+        <doActivity xmi:type="uml:FunctionBehavior" xmi:id="_WgqcsX28EeqLtO18OMgg9Q" name="check si ese movimiento no se sale de los limites"/>
+        <entry xmi:type="uml:FunctionBehavior" xmi:id="_Wgqcsn28EeqLtO18OMgg9Q" name="Definir siguiente movimiento desde temp_cell"/>
+        <exit xmi:type="uml:FunctionBehavior" xmi:id="_Wgqcs328EeqLtO18OMgg9Q" name="Devolver siguiente celda &amp; True or False dependiendo si se sale de los limites o no"/>
+      </subvertex>
+      <subvertex xmi:type="uml:State" xmi:id="_Gp4UwH29EeqLtO18OMgg9Q" name="State18"/>
+    </region>
+  </packagedElement>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_HaqIJ3gwEeqQ18sxz73w2A">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HbLskHgwEeqQ18sxz73w2A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+  </profileApplication>
 </uml:Model>
