@@ -34,10 +34,11 @@ struct Cell {
 };
 typedef struct Cell st_Cell;
 
-struct st_Cell_Queue {
+struct Cell_Queue {
 	struct Cell queue[MAX_CELLS];
 	unsigned int length;
 };
+typedef struct Cell_Queue st_Cell_Queue;
 
 /********************************************************/
 /*					GLOBAL VARIABLES					*/
@@ -48,6 +49,10 @@ st_Cell grid[MAX_COLS][MAX_ROWS];
 /********************************************************/
 /*				FUNCTIONS DECLARATIONS					*/
 /********************************************************/
+st_Cell getNearElementToDestination(const st_Cell destination, st_Cell_Queue *queue);
+void printQueue(const st_Cell_Queue queue);
+void addCellToQueue(const st_Cell cell, st_Cell_Queue *queue);
+bool isCellAvailable(const st_Cell cell);
 bool markCellAsVisited(const st_Cell cell);
 void fillGrid();
 void printGrid();
@@ -62,29 +67,54 @@ double get_distance(const st_Cell point1, const st_Cell point2);
 /********************************************************/
 int main(int argc, char *argv[]) {
 	
-	st_Cell celda, celda_nueva;
-	enum e_Action accion;
-	accion = E_ACTION_LEFT;
-	celda.x = 0;
-	celda.state = E_STATE_VISITED;
+	fillGrid();
 	
-	printf("Hello Planning!\n");
-	if (celda.state == E_STATE_VISITED) {
-		printf("Estado VISITED\n");
+	st_Cell initial_cell = {0, 0, E_STATE_VISITED};
+	st_Cell destination_cell = {5, 7, E_STATE_UNVISITED};
+	
+	markCellAsVisited(initial_cell);
+	
+	st_Cell_Queue path;
+	st_Cell_Queue queue;
+	path.length = 0;
+	queue.length = 0;
+	
+	addCellToQueue(initial_cell, &queue);
+	
+	while (queue.length != 0) {
+		
+		st_Cell temp_cell;
+		
+		temp_cell = getNearElementToDestination(destination_cell, &queue);
+		
+		addCellToQueue(temp_cell, &path);
+		
+		if (temp_cell.x == destination_cell.x && temp_cell.y == destination_cell.y) {
+			printf("Success!!!");
+			printQueue(path);
+			return 0;
+		}
+		
+		int i = 0;
+		
+		// Get the possibles next cells from the current one
+		for (i = 0; i < (int)E_MAX_ACTION; ++i) {
+			
+			enum e_Action next_action = (enum e_Action)i;
+			
+			st_Cell next_cell = getNextMovement(temp_cell.x, temp_cell.y, next_action);
+			
+			if (isCellAvailable(next_cell)) {
+				markCellAsVisited(next_cell);
+				next_cell.state = E_STATE_VISITED;
+				addCellToQueue(next_cell, &queue);
+			}
+		}
+		
 	}
 	
-	celda_nueva = getNextMovement(celda.x, celda.y, accion);
 
 	
-	printf("%d, %d\n", celda_nueva.x, celda_nueva.y);
-	
-	fillGrid();
-	printGrid();
-	celda.x = 5;
-	celda.y = 7;
-	markCellAsVisited(celda);
-	printf("-------------------------\n");
-	printGrid();
 	printf("Bye Planning!\n");
 	return 0;
 }
@@ -93,6 +123,66 @@ int main(int argc, char *argv[]) {
 /********************************************************/
 /*				FUNCTIONS DEFINITIONS					*/
 /********************************************************/
+st_Cell getNearElementToDestination(const st_Cell destination, st_Cell_Queue *queue) {
+	
+	st_Cell returnValue;
+	double distance = 0;
+	double temp_distance = 0;
+	bool first_computed_distance = true;
+	int near_index = 0;
+	int i = 0;
+	
+	for (i = 0; i < queue->length && queue->length < MAX_CELLS; ++i) {
+		
+		if (queue->queue[i].state == E_STATE_VISITED) {
+			
+			temp_distance = get_distance(destination, queue->queue[i]);
+			
+			if (first_computed_distance || temp_distance < distance) {
+				distance = temp_distance;
+				near_index = i;
+				first_computed_distance = false;
+			}
+			
+		}
+	}
+	
+	returnValue = queue->queue[near_index];
+	queue->queue[near_index].x = 0;
+	queue->queue[near_index].y = 0;
+	queue->queue[near_index].state = E_STATE_NOT_CREATED;
+	
+	queue->length--;
+	
+	return returnValue;	
+}
+
+void printQueue(const st_Cell_Queue queue) {
+	int i = 0;
+	for (i = 0; i < queue.length; i++) {
+		printf("%d,%d ", queue.queue[i].x, queue.queue[i].y);
+	}
+	printf("\n");
+}
+
+void addCellToQueue(const st_Cell cell, st_Cell_Queue *queue) {
+	if (queue->length < MAX_CELLS) {
+			queue->queue[queue->length] = cell;
+			queue->length++;
+	}
+
+}
+
+bool isCellAvailable(const st_Cell cell) {
+	
+	bool returnValue = false;
+
+	if (cell.x < MAX_ROWS && cell.y < MAX_COLS) {
+		returnValue = !(grid[cell.x][cell.y].state == E_STATE_VISITED || grid[cell.x][cell.y].state == E_STATE_UNABLE);
+	}
+	return returnValue;
+}
+
 bool markCellAsVisited(const st_Cell cell) { 
 
 	bool returnValue = false;
@@ -148,30 +238,25 @@ st_Cell getNextMovement(int x, int y, enum e_Action movement) {
 	switch (movement) {
 		case E_ACTION_RIGTH:
 			if (checkXLimits(output.x + 1)) {
-				printf("E_ACTION_RIGTH\n");
 				output.x += 1;
 			}
 			break;
 		case E_ACTION_UP:
 			if (checkYLimits(output.y + 1)) {
-				printf("E_ACTION_UP\n");
 				output.y += 1;
 			}
 			break;
 		case E_ACTION_LEFT:
 			if (checkXLimits(output.x - 1)) {
-				printf("E_ACTION_LEFT\n");
 				output.x -= 1;
 			}
 			break;
 		case E_ACTION_DOWN:
 			if (checkYLimits(output.y - 1)) {
-				printf("E_ACTION_DOWN\n");
 				output.y -= 1;
 			}
 			break;
 		default:
-			printf("default\n");
 			break;
 	}
 	
