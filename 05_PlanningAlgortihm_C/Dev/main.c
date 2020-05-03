@@ -39,16 +39,23 @@ struct st_Cell_Queue {
 	unsigned int length;
 };
 
-
+/********************************************************/
+/*					GLOBAL VARIABLES					*/
+/********************************************************/
 st_Cell grid[MAX_COLS][MAX_ROWS];
 
 
+/********************************************************/
+/*				FUNCTIONS DECLARATIONS					*/
+/********************************************************/
+bool markCellAsVisited(const st_Cell cell);
 void fillGrid();
 void printGrid();
 st_Cell getNextMovement(int x, int y, enum e_Action movement);
 bool checkXLimits(int x);
 bool checkYLimits(int y);
 double get_distance(const st_Cell point1, const st_Cell point2);
+
 
 /********************************************************/
 /*						MAIN							*/
@@ -73,8 +80,29 @@ int main(int argc, char *argv[]) {
 	
 	fillGrid();
 	printGrid();
+	celda.x = 5;
+	celda.y = 7;
+	markCellAsVisited(celda);
+	printf("-------------------------\n");
+	printGrid();
 	printf("Bye Planning!\n");
 	return 0;
+}
+
+
+/********************************************************/
+/*				FUNCTIONS DEFINITIONS					*/
+/********************************************************/
+bool markCellAsVisited(const st_Cell cell) { 
+
+	bool returnValue = false;
+
+	if (cell.x < MAX_ROWS && cell.y < MAX_COLS) {
+		grid[cell.x][cell.y].state = E_STATE_VISITED;
+		returnValue = true;
+	}
+
+	return returnValue;
 }
 
 void fillGrid() {
