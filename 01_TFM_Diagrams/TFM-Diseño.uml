@@ -67,11 +67,11 @@ return FALSE</body>
           <subvertex xmi:type="uml:State" xmi:id="_lPy8UIIqEeqBrv4lwx0DVw" name="takeMeasuremetsUltraSonic">
             <doActivity xmi:type="uml:OpaqueBehavior" xmi:id="_XW75oIIrEeqBrv4lwx0DVw">
               <language>C</language>
-              <body>sendSignalLidar&#xD;
+              <body>sendSignalUltraSonic&#xD;
 activarTimer / Alarma&#xD;
 wait()&#xD;
 receive signal&#xD;
-calcular distancia (d = vel_ligth * tiempo / 2)&#xD;
+calcular distancia (d = vel_sonido * tiempo / 2)&#xD;
 totalMeasurements++&#xD;
 if (totalMeasurements==3) {&#xD;
 exit = true&#xD;
@@ -111,38 +111,6 @@ exit = false</body>
       </packagedElement>
       <packagedElement xmi:type="uml:StateMachine" xmi:id="_ravncIPyEeqQHuLPTpQAnQ" name="StateMachine2">
         <region xmi:type="uml:Region" xmi:id="_rsW74IPyEeqQHuLPTpQAnQ" name="Region1">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_QZQOgIi9EeqxVdboc4aDZQ">
-            <body>TODO Poner en do el state machine de GetNearElementToDestination &amp; getNextMovement&#xD;
-</body>
-          </ownedComment>
-          <ownedComment xmi:type="uml:Comment" xmi:id="_mRw9cIi-EeqxVdboc4aDZQ">
-            <body>st_cell {&#xD;
-	int x;&#xD;
-	int y;&#xD;
-	ENUM state;&#xD;
-}&#xD;
--&#xD;
-st_cell_queue {&#xD;
-	st_cell cell_array[50];&#xD;
-	int length;&#xD;
-}&#xD;
--&#xD;
-E_CELL_STATE {&#xD;
-       E_UNABLE;&#xD;
-	E_UNVISITED;&#xD;
-       E_VISITED;&#xD;
-}&#xD;
-	&#xD;
-&#xD;
-</body>
-          </ownedComment>
-          <ownedComment xmi:type="uml:Comment" xmi:id="_AWhlkIkcEeqnmbh8CdaLdw">
-            <body>Action = movimiento a realizar:&#xD;
-Action = 0 -> x + 1 (Derecha)&#xD;
-Action = 1 -> y + 1 (Arriba)&#xD;
-Action = 2 -> x - 1 (Izquierda)&#xD;
-Action = 3 -> y - 1 (Abajo)</body>
-          </ownedComment>
           <transition xmi:type="uml:Transition" xmi:id="_IGblIIfrEeqzdcmLo1mxFQ" source="_L97GAIfpEeq2zqZjD6cexQ" target="_EjseMIfrEeqzdcmLo1mxFQ"/>
           <transition xmi:type="uml:Transition" xmi:id="_yVSXkIfrEeqzdcmLo1mxFQ" guard="_2l0_sIfrEeqzdcmLo1mxFQ" source="_EjseMIfrEeqzdcmLo1mxFQ" target="_wSc9IIfrEeqzdcmLo1mxFQ">
             <ownedRule xmi:type="uml:Constraint" xmi:id="_2l0_sIfrEeqzdcmLo1mxFQ">
@@ -166,14 +134,6 @@ Action = 3 -> y - 1 (Abajo)</body>
               <specification xmi:type="uml:OpaqueExpression" xmi:id="_xcT-IYkdEeqnmbh8CdaLdw">
                 <language>C</language>
                 <body>queue.length != 0</body>
-              </specification>
-            </ownedRule>
-          </transition>
-          <transition xmi:type="uml:Transition" xmi:id="_l6AaMIi9EeqxVdboc4aDZQ" guard="_p9oAoIi9EeqxVdboc4aDZQ" source="_HY9SsIi9EeqxVdboc4aDZQ" target="_h7OQcIi9EeqxVdboc4aDZQ">
-            <ownedRule xmi:type="uml:Constraint" xmi:id="_p9oAoIi9EeqxVdboc4aDZQ">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="_p9oAoYi9EeqxVdboc4aDZQ">
-                <language>C</language>
-                <body>achieved</body>
               </specification>
             </ownedRule>
           </transition>
@@ -209,11 +169,20 @@ Action = 3 -> y - 1 (Abajo)</body>
               </specification>
             </ownedRule>
           </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_AY8WkJITEeqQnLyi4WnJoQ" source="_mXPvQJISEeqQnLyi4WnJoQ" target="_h7OQcIi9EeqxVdboc4aDZQ"/>
+          <transition xmi:type="uml:Transition" xmi:id="_CMySwJITEeqQnLyi4WnJoQ" guard="_DJ0l8JIXEeqQnLyi4WnJoQ" source="_HY9SsIi9EeqxVdboc4aDZQ" target="_mXPvQJISEeqQnLyi4WnJoQ">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_DJ0l8JIXEeqQnLyi4WnJoQ">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_DJ0l8ZIXEeqQnLyi4WnJoQ">
+                <language>C</language>
+                <body>achieved</body>
+              </specification>
+            </ownedRule>
+          </transition>
           <subvertex xmi:type="uml:Pseudostate" xmi:id="_L97GAIfpEeq2zqZjD6cexQ" name="Initial1"/>
           <subvertex xmi:type="uml:State" xmi:id="_EjseMIfrEeqzdcmLo1mxFQ" name="CheckDestination">
             <doActivity xmi:type="uml:OpaqueBehavior" xmi:id="_c8ZucIfrEeqzdcmLo1mxFQ">
               <language>C</language>
-              <body>if(map[goal_x][goal_y].state == DISABLED) {&#xD;
+              <body>if(grid[goal_x][goal_y].state == E_STATE_UNABLE) {&#xD;
 	valid_destination = false; &#xD;
 }</body>
             </doActivity>
@@ -226,23 +195,23 @@ Action = 3 -> y - 1 (Abajo)</body>
           <subvertex xmi:type="uml:State" xmi:id="_5Ry2sIfrEeqzdcmLo1mxFQ" name="CreatePathAndQueue">
             <entry xmi:type="uml:OpaqueBehavior" xmi:id="_z6NRgIfsEeqzdcmLo1mxFQ">
               <language>C</language>
-              <body>st_cell_queue queue; // length 50&#xD;
-st_cell_queue path;    // length 50&#xD;
-queue[0].x = goal_x; &#xD;
-queue[0].y = goal_y;&#xD;
-queue[0].state = E_STATE_VISITED;&#xD;
+              <body>st_cell_queue queue;&#xD;
+st_cell_queue path;    &#xD;
+&#xD;
+st_Cell initial_cell = {0, 0, E_STATE_VISITED};&#xD;
+addCellToQueue(initial_cell, &amp;queue);&#xD;
 int action = 0;</body>
             </entry>
           </subvertex>
-          <subvertex xmi:type="uml:State" xmi:id="_hpihEIftEeqzdcmLo1mxFQ" name="GetNearElementToDestination">
+          <subvertex xmi:type="uml:State" xmi:id="_hpihEIftEeqzdcmLo1mxFQ" name="GetNearElementToDestinationFromQueue">
+            <doActivity xmi:type="uml:StateMachine" xmi:id="_zzBhoI1hEeqnwuuNAC7Slg" name="getNearElementToDestination"/>
             <entry xmi:type="uml:OpaqueBehavior" xmi:id="__VABsIkcEeqnmbh8CdaLdw">
               <language>C</language>
               <body>action = 0;</body>
             </entry>
             <exit xmi:type="uml:OpaqueBehavior" xmi:id="_yYd7cIi8EeqxVdboc4aDZQ">
               <language>C</language>
-              <body>path.add(near_element)&#xD;
-</body>
+              <body>addCellToQueue(near_element, &amp;path);</body>
             </exit>
           </subvertex>
           <subvertex xmi:type="uml:State" xmi:id="_HY9SsIi9EeqxVdboc4aDZQ" name="checkNearElemWithDestination">
@@ -259,12 +228,21 @@ int action = 0;</body>
           </subvertex>
           <subvertex xmi:type="uml:FinalState" xmi:id="_h7OQcIi9EeqxVdboc4aDZQ" name="FinalState13 - Success"/>
           <subvertex xmi:type="uml:State" xmi:id="_6wEqIIi9EeqxVdboc4aDZQ" name="getNextMovement">
+            <doActivity xmi:type="uml:StateMachine" xmi:id="_BYQvoI1fEeqnwuuNAC7Slg" name="getNextMovement" specification="_FRx-4I1fEeqnwuuNAC7Slg"/>
             <exit xmi:type="uml:OpaqueBehavior" xmi:id="_PSuO0Ii-EeqxVdboc4aDZQ">
               <language>C</language>
               <body>action++;</body>
             </exit>
           </subvertex>
           <subvertex xmi:type="uml:FinalState" xmi:id="_lntusIkdEeqnmbh8CdaLdw" name="FinalState21 - Failed"/>
+          <subvertex xmi:type="uml:State" xmi:id="_mXPvQJISEeqQnLyi4WnJoQ" name="BackTracking">
+            <doActivity xmi:type="uml:StateMachine" xmi:id="_9OgeEJIWEeqQnLyi4WnJoQ" name="BackTracking"/>
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="__AT6QJITEeqQnLyi4WnJoQ">
+              <language>C</language>
+              <body>st_Cell_Path path_confirmed;&#xD;
+</body>
+            </entry>
+          </subvertex>
         </region>
       </packagedElement>
       <packagedElement xmi:type="uml:StateMachine" xmi:id="_00eZ0IfKEeq2zqZjD6cexQ" name="StateMachine3">
@@ -373,38 +351,319 @@ int distance[3];</body>
         <region xmi:type="uml:Region" xmi:id="_PatjsIfuEeqzIuR0cO0JcQ" name="Region1">
           <transition xmi:type="uml:Transition" xmi:id="_e24LIIi8EeqxVdboc4aDZQ" source="_WtTyIIfvEeqzIuR0cO0JcQ" target="_PoNiQIfwEeqzIuR0cO0JcQ"/>
           <transition xmi:type="uml:Transition" xmi:id="_gJVRgIi8EeqxVdboc4aDZQ" source="_PoNiQIfwEeqzIuR0cO0JcQ" target="_YYmPQIfvEeqzIuR0cO0JcQ"/>
+          <transition xmi:type="uml:Transition" xmi:id="_mC6S8J0TEeqTb-vJC78qSQ" source="_YYmPQIfvEeqzIuR0cO0JcQ" target="_SPWC4Ii8EeqxVdboc4aDZQ"/>
           <subvertex xmi:type="uml:Pseudostate" xmi:id="_WtTyIIfvEeqzIuR0cO0JcQ" name="Initial1"/>
-          <subvertex xmi:type="uml:State" xmi:id="_YYmPQIfvEeqzIuR0cO0JcQ" name="checkIfCellisVisited">
+          <subvertex xmi:type="uml:State" xmi:id="_YYmPQIfvEeqzIuR0cO0JcQ" name="getMinimumDistanceToDestination">
             <doActivity xmi:type="uml:OpaqueBehavior" xmi:id="_vCsPUIf0EeqzIuR0cO0JcQ">
               <language>C</language>
-              <body>if (queue[i].state == VISITED) {&#xD;
-	state_visited =true;&#xD;
-}</body>
+              <body>	for (i = 0; i &lt; queue->length &amp;&amp; queue->length &lt; MAX_CELLS; ++i) {&#xD;
+		&#xD;
+		if (queue->queue[i].cell.state == E_STATE_VISITED) {&#xD;
+						&#xD;
+			if (first_computed_distance || queue->queue[i].distance_to_dest &lt; max_distance) {&#xD;
+				max_distance = queue->queue[i].distance_to_dest;&#xD;
+				near_index = i;&#xD;
+				first_computed_distance = false;&#xD;
+			}&#xD;
+			&#xD;
+		}&#xD;
+	}</body>
             </doActivity>
-            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_dEUasIfzEeqzIuR0cO0JcQ">
-              <language>C</language>
-              <body>state_visited = false;</body>
-            </entry>
           </subvertex>
           <subvertex xmi:type="uml:State" xmi:id="_PoNiQIfwEeqzIuR0cO0JcQ" name="initializeVariables">
             <entry xmi:type="uml:OpaqueBehavior" xmi:id="_VKwvYIfxEeqzIuR0cO0JcQ">
               <language>C</language>
               <body>st_cell returnValue;&#xD;
 double distance = 0;&#xD;
-double temp_distance = 0;&#xD;
 bool first_distance = true;&#xD;
 int near_point = 0;&#xD;
 int i = 0;</body>
             </entry>
           </subvertex>
-          <subvertex xmi:type="uml:State" xmi:id="__Qc-wIfxEeqzIuR0cO0JcQ" name="getDistance">
-            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_ZX060IfzEeqzIuR0cO0JcQ">
+          <subvertex xmi:type="uml:State" xmi:id="_SPWC4Ii8EeqxVdboc4aDZQ" name="resetElementOfQueue">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_eMRSAJCKEeqH1--KfmopaA">
               <language>C</language>
-              <body>temp_distance = sqrt(pow(queue[i].x - destination.x, 2) + pow(queue[i].y - destination.y, 2));</body>
+              <body>if (first_computed_distance) {&#xD;
+&#xD;
+	returnValue = queue->queue[near_index].cell;&#xD;
+	&#xD;
+	// Reset Position&#xD;
+	queue->queue[near_index].cell.x = 0;&#xD;
+	queue->queue[near_index].cell.y = 0;&#xD;
+	queue->queue[near_index].cell.state = E_STATE_NOT_CREATED;&#xD;
+	queue->queue[near_index].distance_to_dest = 0;&#xD;
+	&#xD;
+	// Move all the queue&#xD;
+	for (i = near_index; i &lt; queue->length - 1; ++i) {&#xD;
+		queue->queue[i] = queue->queue[i + 1];&#xD;
+	}&#xD;
+	&#xD;
+	queue->length--;&#xD;
+}&#xD;
+return returnValue;	</body>
             </entry>
           </subvertex>
-          <subvertex xmi:type="uml:State" xmi:id="_7Ac6YIi7EeqxVdboc4aDZQ" name="checkDistance"/>
-          <subvertex xmi:type="uml:State" xmi:id="_SPWC4Ii8EeqxVdboc4aDZQ" name="saves_distance"/>
+        </region>
+      </packagedElement>
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="_4G2gkI1cEeqnwuuNAC7Slg" name="getNextMovement">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_FRx-4I1fEeqnwuuNAC7Slg" method="_BYQvoI1fEeqnwuuNAC7Slg"/>
+        <region xmi:type="uml:Region" xmi:id="_5ghpQI1cEeqnwuuNAC7Slg" name="Region1">
+          <transition xmi:type="uml:Transition" xmi:id="_SHyS4I1dEeqnwuuNAC7Slg" source="_7OSLkI1cEeqnwuuNAC7Slg" target="_91XikI1cEeqnwuuNAC7Slg"/>
+          <transition xmi:type="uml:Transition" xmi:id="_SYwRoI1eEeqnwuuNAC7Slg" guard="_cWiJYI1eEeqnwuuNAC7Slg" source="_91XikI1cEeqnwuuNAC7Slg" target="_oZNGgI1dEeqnwuuNAC7Slg">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_cWiJYI1eEeqnwuuNAC7Slg">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_cWiJYY1eEeqnwuuNAC7Slg">
+                <language>C</language>
+                <body>action == E_ACTION_RIGTH</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_TJWoII1eEeqnwuuNAC7Slg" guard="_iUgjsI1eEeqnwuuNAC7Slg" source="_91XikI1cEeqnwuuNAC7Slg" target="_XlkxQI1dEeqnwuuNAC7Slg">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_iUgjsI1eEeqnwuuNAC7Slg">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_iUgjsY1eEeqnwuuNAC7Slg">
+                <language>C</language>
+                <body>action == E_ACTION_UP</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_TxBFEI1eEeqnwuuNAC7Slg" guard="_mggqEI1eEeqnwuuNAC7Slg" source="_91XikI1cEeqnwuuNAC7Slg" target="_lEX4sI1dEeqnwuuNAC7Slg">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_mggqEI1eEeqnwuuNAC7Slg">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_mggqEY1eEeqnwuuNAC7Slg">
+                <language>C</language>
+                <body>action == E_ACTION_LEFT</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_UfO18I1eEeqnwuuNAC7Slg" guard="_qgcDUI1eEeqnwuuNAC7Slg" source="_91XikI1cEeqnwuuNAC7Slg" target="_jTGIUI1dEeqnwuuNAC7Slg">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_qgcDUI1eEeqnwuuNAC7Slg">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_qgcDUY1eEeqnwuuNAC7Slg">
+                <language>C</language>
+                <body>action == E_ACTION_DOWN</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_s6Ur0I1eEeqnwuuNAC7Slg" source="_oZNGgI1dEeqnwuuNAC7Slg" target="_rnys8I1eEeqnwuuNAC7Slg"/>
+          <transition xmi:type="uml:Transition" xmi:id="_uHm-UI1eEeqnwuuNAC7Slg" source="_XlkxQI1dEeqnwuuNAC7Slg" target="_rnys8I1eEeqnwuuNAC7Slg"/>
+          <transition xmi:type="uml:Transition" xmi:id="_vnNI0I1eEeqnwuuNAC7Slg" source="_lEX4sI1dEeqnwuuNAC7Slg" target="_rnys8I1eEeqnwuuNAC7Slg"/>
+          <transition xmi:type="uml:Transition" xmi:id="_wk6HMI1eEeqnwuuNAC7Slg" source="_jTGIUI1dEeqnwuuNAC7Slg" target="_rnys8I1eEeqnwuuNAC7Slg"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_7OSLkI1cEeqnwuuNAC7Slg" name="Initial1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_91XikI1cEeqnwuuNAC7Slg" name="CreateVariables">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_Pp7JUI1dEeqnwuuNAC7Slg">
+              <language>C</language>
+              <body>st_Cell output;&#xD;
+&#xD;
+output.x = x;&#xD;
+output.y = y;</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_XlkxQI1dEeqnwuuNAC7Slg" name="checkPositiveYLimits">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_hfHpQI1dEeqnwuuNAC7Slg">
+              <language>C</language>
+              <body>if (checkYLimits(output.y + 1)) {&#xD;
+	output.y += 1;&#xD;
+}</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_jTGIUI1dEeqnwuuNAC7Slg" name="checkNegativeYLimits">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_jTGIUY1dEeqnwuuNAC7Slg">
+              <language>C</language>
+              <body>if (checkYLimits(output.y - 1)) {&#xD;
+	output.y -= 1;&#xD;
+}</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_lEX4sI1dEeqnwuuNAC7Slg" name="checkNegativeXLimits">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_lEX4sY1dEeqnwuuNAC7Slg">
+              <language>C</language>
+              <body>if (checkXLimits(output.x - 1)) {&#xD;
+	output.x -= 1;&#xD;
+}</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_oZNGgI1dEeqnwuuNAC7Slg" name="checkPositiveXLimits">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_oZNGgY1dEeqnwuuNAC7Slg">
+              <language>C</language>
+              <body>if (checkXLimits(output.x + 1)) {&#xD;
+	output.x += 1;&#xD;
+}</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:FinalState" xmi:id="_rnys8I1eEeqnwuuNAC7Slg" name="FinalState12"/>
+        </region>
+      </packagedElement>
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="_uaeegJIVEeqQnLyi4WnJoQ" name="BackTracking">
+        <region xmi:type="uml:Region" xmi:id="_vVOPgJIVEeqQnLyi4WnJoQ" name="Region1">
+          <transition xmi:type="uml:Transition" xmi:id="_6JNWgJIVEeqQnLyi4WnJoQ" source="_yTMcgJIVEeqQnLyi4WnJoQ" target="_2ZmRMJIVEeqQnLyi4WnJoQ"/>
+          <transition xmi:type="uml:Transition" xmi:id="_ruHwgJIWEeqQnLyi4WnJoQ" source="_jg_-EJIWEeqQnLyi4WnJoQ" target="_qb8W8JIWEeqQnLyi4WnJoQ"/>
+          <transition xmi:type="uml:Transition" xmi:id="_vGwgQJIWEeqQnLyi4WnJoQ" source="_N1R4gJIWEeqQnLyi4WnJoQ" target="_jg_-EJIWEeqQnLyi4WnJoQ"/>
+          <transition xmi:type="uml:Transition" xmi:id="_wOT-MJIWEeqQnLyi4WnJoQ" source="_2ZmRMJIVEeqQnLyi4WnJoQ" target="_N1R4gJIWEeqQnLyi4WnJoQ"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_yTMcgJIVEeqQnLyi4WnJoQ" name="Initial1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_2ZmRMJIVEeqQnLyi4WnJoQ" name="CreateAndInitializeVariables">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="__lKB0JIVEeqQnLyi4WnJoQ">
+              <language>C</language>
+              <body>int i = path.length - 2;&#xD;
+int x = 0;&#xD;
+int delta_x = 0;&#xD;
+int y = 0;&#xD;
+int delta_y = 0;&#xD;
+st_Cell_Path returnValue;&#xD;
+returnValue.length = 0;&#xD;
+&#xD;
+path.path[path.length - 1].state = E_STATE_CONFIRMED; // Because it is the Goal&#xD;
+x = path.path[path.length - 1].x;&#xD;
+y = path.path[path.length - 1].y;</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_N1R4gJIWEeqQnLyi4WnJoQ" name="MarkPathAsConfirmed">
+            <doActivity xmi:type="uml:OpaqueBehavior" xmi:id="_iag3IJIWEeqQnLyi4WnJoQ">
+              <language>C</language>
+              <body>for (i = path.length - 2; 0 &lt; i; i--) {&#xD;
+	delta_x = x - path.path[i].x;&#xD;
+	delta_y = y - path.path[i].y;&#xD;
+		&#xD;
+	if ((abs(delta_x) + abs(delta_y)) == 1) {&#xD;
+		path.path[i].state = E_STATE_CONFIRMED;&#xD;
+		x = path.path[i].x;&#xD;
+		y = path.path[i].y;&#xD;
+		&#xD;
+		if (delta_x == 1) {&#xD;
+			path.path[i].direction == E_ACTION_RIGTH;&#xD;
+		} else if (delta_x == -1) {&#xD;
+			path.path[i].direction == E_ACTION_LEFT;&#xD;
+		} else if (delta_y == 1) {&#xD;
+			path.path[i].direction == E_ACTION_UP;&#xD;
+		} else if (delta_y == -1) {&#xD;
+			path.path[i].direction == E_ACTION_DOWN;&#xD;
+		}&#xD;
+	}&#xD;
+}</body>
+            </doActivity>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_jg_-EJIWEeqQnLyi4WnJoQ" name="CopyConfirmedCellsToPath">
+            <doActivity xmi:type="uml:OpaqueBehavior" xmi:id="_puCvIJIWEeqQnLyi4WnJoQ">
+              <language>C</language>
+              <body>for (i = 0; i &lt; path.length; i++) {&#xD;
+	if (path.path[i].state == E_STATE_CONFIRMED) {&#xD;
+		addCellToPath(path.path[i], &amp;returnValue);&#xD;
+	}&#xD;
+}</body>
+            </doActivity>
+          </subvertex>
+          <subvertex xmi:type="uml:FinalState" xmi:id="_qb8W8JIWEeqQnLyi4WnJoQ" name="FinalState6"/>
+        </region>
+      </packagedElement>
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="_0CfoIJLfEeqyDbc6QVWG0w" name="goTo">
+        <region xmi:type="uml:Region" xmi:id="_0nQiEJLfEeqyDbc6QVWG0w" name="Region1">
+          <transition xmi:type="uml:Transition" xmi:id="_9LhpMJLfEeqyDbc6QVWG0w" source="_2tJ3kJLfEeqyDbc6QVWG0w" target="_5DNwAJLfEeqyDbc6QVWG0w"/>
+          <transition xmi:type="uml:Transition" xmi:id="_a9z7UJLiEeqyDbc6QVWG0w" guard="_keC7cJLiEeqyDbc6QVWG0w" source="_5DNwAJLfEeqyDbc6QVWG0w" target="_Yq8g0JLiEeqyDbc6QVWG0w">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_keC7cJLiEeqyDbc6QVWG0w">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_keC7cZLiEeqyDbc6QVWG0w">
+                <language>C</language>
+                <body>!planningResult </body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_sFktgJLiEeqyDbc6QVWG0w" guard="_wUMqEJLiEeqyDbc6QVWG0w" source="_5DNwAJLfEeqyDbc6QVWG0w" target="_q5AzwJLiEeqyDbc6QVWG0w">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_wUMqEJLiEeqyDbc6QVWG0w">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_wUMqEZLiEeqyDbc6QVWG0w">
+                <language>C</language>
+                <body>planningResult</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="__BVskJLlEeqyDbc6QVWG0w" source="_q5AzwJLiEeqyDbc6QVWG0w" target="_txTvMJLlEeqyDbc6QVWG0w"/>
+          <transition xmi:type="uml:Transition" xmi:id="_LDz_8JLmEeqyDbc6QVWG0w" guard="_OMtqkJLmEeqyDbc6QVWG0w" source="_txTvMJLlEeqyDbc6QVWG0w" target="_HWVooJLmEeqyDbc6QVWG0w">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_OMtqkJLmEeqyDbc6QVWG0w">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_OMtqkZLmEeqyDbc6QVWG0w">
+                <language>C</language>
+                <body>recalibrate </body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_SoM-cJLmEeqyDbc6QVWG0w" guard="_WXmBUJLmEeqyDbc6QVWG0w" source="_txTvMJLlEeqyDbc6QVWG0w" target="_P4HccJLmEeqyDbc6QVWG0w">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_WXmBUJLmEeqyDbc6QVWG0w">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_WXmBUZLmEeqyDbc6QVWG0w">
+                <language>C</language>
+                <body>!recalibrate</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_UueR8JLnEeqyDbc6QVWG0w" guard="_ZtKZgJLnEeqyDbc6QVWG0w" source="_P4HccJLmEeqyDbc6QVWG0w" target="_txTvMJLlEeqyDbc6QVWG0w">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_ZtKZgJLnEeqyDbc6QVWG0w">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_ZtKZgZLnEeqyDbc6QVWG0w">
+                <language>C</language>
+                <body>continueMoving</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_h3mrYJLnEeqyDbc6QVWG0w" guard="_lV6lUJLnEeqyDbc6QVWG0w" source="_P4HccJLmEeqyDbc6QVWG0w" target="_fhlPMJLnEeqyDbc6QVWG0w">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_lV6lUJLnEeqyDbc6QVWG0w">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_lV6lUZLnEeqyDbc6QVWG0w">
+                <language>C</language>
+                <body>!continueMoving</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_2tJ3kJLfEeqyDbc6QVWG0w" name="Initial1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_5DNwAJLfEeqyDbc6QVWG0w" name="Planning">
+            <doActivity xmi:type="uml:StateMachine" xmi:id="_Wh8M8JLiEeqyDbc6QVWG0w" name="Planning"/>
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_H93KYJLgEeqyDbc6QVWG0w">
+              <language>C</language>
+              <body>bool planningResult = false;&#xD;
+st_Path path;</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:FinalState" xmi:id="_Yq8g0JLiEeqyDbc6QVWG0w" name="FinalState4 - Failed"/>
+          <subvertex xmi:type="uml:State" xmi:id="_q5AzwJLiEeqyDbc6QVWG0w" name="SetIntialCellAsCurrentCell">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_mwsMIJLlEeqyDbc6QVWG0w">
+              <language>C</language>
+              <body>current_cell.x = initial_cell.x;&#xD;
+current_cell.y = initial_cell.y;&#xD;
+int i = 0;&#xD;
+bool continueMoving = false;</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_txTvMJLlEeqyDbc6QVWG0w" name="CheckIfReCalibrationIsNeeded">
+            <doActivity xmi:type="uml:OpaqueBehavior" xmi:id="_-D2JkJLlEeqyDbc6QVWG0w">
+              <language>C</language>
+              <body>if (i % 5 == 0) {&#xD;
+	recalibrate = true;&#xD;
+}</body>
+            </doActivity>
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_4xzBIJLlEeqyDbc6QVWG0w">
+              <language>C</language>
+              <body>bool recalibrate = false</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_HWVooJLmEeqyDbc6QVWG0w" name="Recalibrate"/>
+          <subvertex xmi:type="uml:State" xmi:id="_P4HccJLmEeqyDbc6QVWG0w" name="Move">
+            <doActivity xmi:type="uml:OpaqueBehavior" xmi:id="_QArtIJLnEeqyDbc6QVWG0w">
+              <language>C</language>
+              <body>if (current_cell.direction == path.path[i].direction) {&#xD;
+	// The current direction is correct&#xD;
+	sendLinearVelocityToControl();&#xD;
+	wait();&#xD;
+} else {&#xD;
+		&#xD;
+	// Change the direction&#xD;
+	sendAngularVelocityToControl();&#xD;
+	wait();&#xD;
+	sendLinearVelocityToControl();&#xD;
+	wait();&#xD;
+}&#xD;
+current_cell.x = path.path[i].x;&#xD;
+current_cell.y = path.path[i].y;</body>
+            </doActivity>
+            <exit xmi:type="uml:OpaqueBehavior" xmi:id="_TR60YJLnEeqyDbc6QVWG0w">
+              <language>C</language>
+              <body>i++;&#xD;
+if (i &lt; path.length) {&#xD;
+	continueMoving = true;&#xD;
+} else {&#xD;
+	continueMoving = false;&#xD;
+}</body>
+            </exit>
+          </subvertex>
+          <subvertex xmi:type="uml:FinalState" xmi:id="_fhlPMJLnEeqyDbc6QVWG0w" name="FinalState15 - Success"/>
         </region>
       </packagedElement>
     </packagedElement>
@@ -447,9 +706,10 @@ int i = 0;</body>
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
           </ownedParameter>
         </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_-xR-8I1hEeqnwuuNAC7Slg" name="init"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_B-e2sIIdEeqBrv4lwx0DVw" name="Government" visibility="private"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_f6nTQIIdEeqBrv4lwx0DVw" name="Navigation" visibility="protected">
+      <packagedElement xmi:type="uml:Class" xmi:id="_f6nTQIIdEeqBrv4lwx0DVw" name="Navigation" visibility="package">
         <ownedOperation xmi:type="uml:Operation" xmi:id="_kpyYIIIdEeqBrv4lwx0DVw" name="goTo">
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_njnE8IIdEeqBrv4lwx0DVw" name="x">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
@@ -476,6 +736,7 @@ int i = 0;</body>
           </ownedParameter>
         </ownedOperation>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_BtjpUIIeEeqBrv4lwx0DVw" name="stop"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_CuWRcI1iEeqnwuuNAC7Slg" name="init"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_DY37oIIeEeqBrv4lwx0DVw" name="Control"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_HT8qEIIeEeqBrv4lwx0DVw" memberEnd="_HT8qE4IeEeqBrv4lwx0DVw _HUCwsIIeEeqBrv4lwx0DVw">
