@@ -24,7 +24,8 @@ enum e_State {
 	E_STATE_NOT_CREATED,
 	E_STATE_UNVISITED,
 	E_STATE_UNABLE,
-	E_STATE_VISITED
+	E_STATE_VISITED,
+	E_STATE_CONFIRMED
 };
 
 struct Cell {
@@ -34,8 +35,21 @@ struct Cell {
 };
 typedef struct Cell st_Cell;
 
+struct Cell_Path {
+	struct Cell path[MAX_CELLS];
+	unsigned int length;
+};
+typedef struct Cell_Path st_Cell_Path;
+
+struct Queue_Element {
+	struct Cell cell;
+	double distance_to_dest;
+};
+typedef struct Queue_Element st_Queue_Element;
+
+
 struct Cell_Queue {
-	struct Cell queue[MAX_CELLS];
+	st_Queue_Element queue[MAX_CELLS];
 	unsigned int length;
 };
 typedef struct Cell_Queue st_Cell_Queue;
@@ -49,9 +63,16 @@ st_Cell grid[MAX_COLS][MAX_ROWS];
 /********************************************************/
 /*				FUNCTIONS DECLARATIONS					*/
 /********************************************************/
-st_Cell getNearElementToDestination(const st_Cell destination, st_Cell_Queue *queue);
+st_Cell_Path backTracking(st_Cell_Path path);
+
+st_Cell getNearElementToDestination(st_Cell_Queue *queue);
+
+void printPath(const st_Cell_Path path);
+void addCellToPath(const st_Cell cell, st_Cell_Path *path);
+
 void printQueue(const st_Cell_Queue queue);
-void addCellToQueue(const st_Cell cell, st_Cell_Queue *queue);
+void addCellToQueue(const st_Cell cell, const st_Cell destination, st_Cell_Queue *queue);
+
 bool isCellAvailable(const st_Cell cell);
 bool markCellAsVisited(const st_Cell cell);
 void fillGrid();
@@ -67,31 +88,41 @@ double get_distance(const st_Cell point1, const st_Cell point2);
 /********************************************************/
 int main(int argc, char *argv[]) {
 	
-	fillGrid();
+	fillGrid(); // TODO Move to Init method of Navigation
+	/*grid[9][5].state = E_STATE_UNABLE;
+	grid[8][5].state = E_STATE_UNABLE;
+	grid[7][5].state = E_STATE_UNABLE;
+	grid[6][5].state = E_STATE_UNABLE;
+	grid[5][5].state = E_STATE_UNABLE;
+	grid[4][5].state = E_STATE_UNABLE;*/
+	printGrid();
 	
 	st_Cell initial_cell = {0, 0, E_STATE_VISITED};
-	st_Cell destination_cell = {5, 7, E_STATE_UNVISITED};
+	st_Cell destination_cell = {5, 5, E_STATE_UNVISITED};
 	
 	markCellAsVisited(initial_cell);
-	
-	st_Cell_Queue path;
+
+	st_Cell_Path path;
 	st_Cell_Queue queue;
 	path.length = 0;
 	queue.length = 0;
 	
-	addCellToQueue(initial_cell, &queue);
+	addCellToQueue(initial_cell, destination_cell, &queue);
 	
 	while (queue.length != 0) {
 		
-		st_Cell temp_cell;
-		
-		temp_cell = getNearElementToDestination(destination_cell, &queue);
-		
-		addCellToQueue(temp_cell, &path);
-		
-		if (temp_cell.x == destination_cell.x && temp_cell.y == destination_cell.y) {
-			printf("Success!!!");
-			printQueue(path);
+		st_Cell near_cell;
+
+		near_cell = getNearElementToDestination(&queue);
+
+		addCellToPath(near_cell, &path);
+		printf("Iterating...  %d,%d\n", near_cell.x, near_cell.y);
+		if (near_cell.x == destination_cell.x && near_cell.y == destination_cell.y) {
+			printf("Success!!!\n");
+			
+			st_Cell_Path path_confirmed;
+			path_confirmed = backTracking(path);
+			printPath(path_confirmed);
 			return 0;
 		}
 		
@@ -102,19 +133,19 @@ int main(int argc, char *argv[]) {
 			
 			enum e_Action next_action = (enum e_Action)i;
 			
-			st_Cell next_cell = getNextMovement(temp_cell.x, temp_cell.y, next_action);
+			st_Cell next_cell = getNextMovement(near_cell.x, near_cell.y, next_action);
 			
 			if (isCellAvailable(next_cell)) {
 				markCellAsVisited(next_cell);
 				next_cell.state = E_STATE_VISITED;
-				addCellToQueue(next_cell, &queue);
+				addCellToQueue(next_cell, destination_cell, &queue);
 			}
 		}
 		
 	}
 	
 
-	
+	printPath(path);
 	printf("Bye Planning!\n");
 	return 0;
 }
@@ -123,52 +154,123 @@ int main(int argc, char *argv[]) {
 /********************************************************/
 /*				FUNCTIONS DEFINITIONS					*/
 /********************************************************/
-st_Cell getNearElementToDestination(const st_Cell destination, st_Cell_Queue *queue) {
+st_Cell_Path backTracking(st_Cell_Path path)  {
+	printf("\n");
+	printPath(path);
+	int i = 0;
+	int x = 0;
+	int delta_x = 0;
+	int y = 0;
+	int delta_y = 0;
+	st_Cell_Path returnValue;
+	returnValue.length = 0;
 	
+	path.path[path.length - 1].state = E_STATE_CONFIRMED; // Because it is the Goal
+	x = path.path[path.length - 1].x;
+	y = path.path[path.length - 1].y;
+	
+	for (i = path.length - 2; 0 < i; i--) {
+		delta_x = x - path.path[i].x;
+		delta_y = y - path.path[i].y;
+		
+		if ((abs(delta_x) + abs(delta_y)) == 1) {
+			path.path[i].state = E_STATE_CONFIRMED;
+			x = path.path[i].x;
+			y = path.path[i].y;
+		}
+	}
+	
+
+	
+	for (i = 0; i < path.length; i++) {
+		if (path.path[i].state == E_STATE_CONFIRMED) {
+			addCellToPath(path.path[i], &returnValue);
+		}
+	}
+	printPath(returnValue);
+	printf("\n");
+	return returnValue;
+}
+st_Cell getNearElementToDestination(st_Cell_Queue *queue) {
+
 	st_Cell returnValue;
-	double distance = 0;
-	double temp_distance = 0;
+	double max_distance = 0;
 	bool first_computed_distance = true;
 	int near_index = 0;
 	int i = 0;
-	
+
 	for (i = 0; i < queue->length && queue->length < MAX_CELLS; ++i) {
 		
-		if (queue->queue[i].state == E_STATE_VISITED) {
-			
-			temp_distance = get_distance(destination, queue->queue[i]);
-			
-			if (first_computed_distance || temp_distance < distance) {
-				distance = temp_distance;
+		if (queue->queue[i].cell.state == E_STATE_VISITED) {
+						
+			if (first_computed_distance || queue->queue[i].distance_to_dest < max_distance) {
+				max_distance = queue->queue[i].distance_to_dest;
 				near_index = i;
 				first_computed_distance = false;
 			}
 			
 		}
 	}
+
+	if (!first_computed_distance) {
 	
-	returnValue = queue->queue[near_index];
-	queue->queue[near_index].x = 0;
-	queue->queue[near_index].y = 0;
-	queue->queue[near_index].state = E_STATE_NOT_CREATED;
+		returnValue = queue->queue[near_index].cell;
 	
-	queue->length--;
+		// Reset Position
+		queue->queue[near_index].cell.x = 0;
+		queue->queue[near_index].cell.y = 0;
+		queue->queue[near_index].cell.state = E_STATE_NOT_CREATED;
+		queue->queue[near_index].distance_to_dest = 0;
 	
+		// Move all the queue
+		for (i = near_index; i < queue->length - 1; ++i) {
+			queue->queue[i] = queue->queue[i + 1];
+		}
+	
+		queue->length--;
+	}
+
 	return returnValue;	
 }
 
 void printQueue(const st_Cell_Queue queue) {
 	int i = 0;
 	for (i = 0; i < queue.length; i++) {
-		printf("%d,%d ", queue.queue[i].x, queue.queue[i].y);
+		printf("%d,%d ", queue.queue[i].cell.x, queue.queue[i].cell.y);
+	}
+	printf(" - Length = %d\n", queue.length);
+}
+
+void addCellToQueue(const st_Cell cell, const st_Cell destination, st_Cell_Queue *queue) {
+	if (queue->length < MAX_CELLS) {
+		queue->queue[queue->length].distance_to_dest = get_distance(destination, cell);
+		queue->queue[queue->length].cell = cell;
+		queue->length++;
+	}
+
+}
+
+void printPath(const st_Cell_Path path) {
+	int i = 0;
+	for (i = 0; i < path.length; i++) {
+		printf("%d,%d (", path.path[i].x, path.path[i].y);
+		if (path.path[i].state == E_STATE_VISITED) {
+			printf("V) ");
+		} else if (path.path[i].state == E_STATE_UNVISITED) {
+			printf("U) ");
+		} else if (path.path[i].state == E_STATE_UNABLE) {
+			printf("D) ");
+		} else if (path.path[i].state == E_STATE_CONFIRMED) {
+			printf("C) ");
+		}
 	}
 	printf("\n");
 }
 
-void addCellToQueue(const st_Cell cell, st_Cell_Queue *queue) {
-	if (queue->length < MAX_CELLS) {
-			queue->queue[queue->length] = cell;
-			queue->length++;
+void addCellToPath(const st_Cell cell, st_Cell_Path *path) {
+	if (path->length < MAX_CELLS) {
+			path->path[path->length] = cell;
+			path->length++;
 	}
 
 }
