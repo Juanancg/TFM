@@ -32,6 +32,7 @@ struct Cell {
 	int x;
 	int y;
 	enum e_State state;
+	enum e_Action next_direction;
 };
 typedef struct Cell st_Cell;
 
@@ -89,7 +90,7 @@ double get_distance(const st_Cell point1, const st_Cell point2);
 int main(int argc, char *argv[]) {
 	
 	fillGrid(); // TODO Move to Init method of Navigation
-	/*grid[9][5].state = E_STATE_UNABLE;
+/*	grid[9][5].state = E_STATE_UNABLE;
 	grid[8][5].state = E_STATE_UNABLE;
 	grid[7][5].state = E_STATE_UNABLE;
 	grid[6][5].state = E_STATE_UNABLE;
@@ -99,6 +100,8 @@ int main(int argc, char *argv[]) {
 	
 	st_Cell initial_cell = {0, 0, E_STATE_VISITED};
 	st_Cell destination_cell = {5, 5, E_STATE_UNVISITED};
+	
+	// TODO Hacer funcion para comprobar que si el destino es alcanzable
 	
 	markCellAsVisited(initial_cell);
 
@@ -169,7 +172,7 @@ st_Cell_Path backTracking(st_Cell_Path path)  {
 	x = path.path[path.length - 1].x;
 	y = path.path[path.length - 1].y;
 	
-	for (i = path.length - 2; 0 < i; i--) {
+	for (i = path.length - 2; 0 <= i; i--) {
 		delta_x = x - path.path[i].x;
 		delta_y = y - path.path[i].y;
 		
@@ -177,6 +180,16 @@ st_Cell_Path backTracking(st_Cell_Path path)  {
 			path.path[i].state = E_STATE_CONFIRMED;
 			x = path.path[i].x;
 			y = path.path[i].y;
+		
+			if (delta_x == 1) {
+				path.path[i].next_direction = E_ACTION_RIGTH;
+			} else if (delta_x == -1) {
+				path.path[i].next_direction = E_ACTION_LEFT;
+			} else if (delta_y == 1) {
+				path.path[i].next_direction = E_ACTION_UP;
+			} else if (delta_y == -1) {
+				path.path[i].next_direction = E_ACTION_DOWN;
+			}
 		}
 	}
 	
@@ -254,14 +267,27 @@ void printPath(const st_Cell_Path path) {
 	int i = 0;
 	for (i = 0; i < path.length; i++) {
 		printf("%d,%d (", path.path[i].x, path.path[i].y);
+		
+		// Print State 
 		if (path.path[i].state == E_STATE_VISITED) {
-			printf("V) ");
+			printf("V-");
 		} else if (path.path[i].state == E_STATE_UNVISITED) {
-			printf("U) ");
+			printf("U-");
 		} else if (path.path[i].state == E_STATE_UNABLE) {
-			printf("D) ");
+			printf("D-");
 		} else if (path.path[i].state == E_STATE_CONFIRMED) {
-			printf("C) ");
+			printf("C-");
+		}
+		
+		// Print Direction
+		if (path.path[i].next_direction == E_ACTION_RIGTH) {
+			printf("Right)  ");
+		} else if (path.path[i].next_direction == E_ACTION_LEFT) {
+			printf("Left)  ");
+		} else if (path.path[i].next_direction == E_ACTION_UP) {
+			printf("Up)  ");
+		} else if (path.path[i].next_direction == E_ACTION_DOWN) {
+			printf("Down)  ");
 		}
 	}
 	printf("\n");

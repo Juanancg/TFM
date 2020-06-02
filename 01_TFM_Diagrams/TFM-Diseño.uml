@@ -526,13 +526,13 @@ y = path.path[path.length - 1].y;</body>
 		y = path.path[i].y;&#xD;
 		&#xD;
 		if (delta_x == 1) {&#xD;
-			path.path[i].direction == E_ACTION_RIGTH;&#xD;
+			path.path[i].direction = E_ACTION_RIGTH;&#xD;
 		} else if (delta_x == -1) {&#xD;
-			path.path[i].direction == E_ACTION_LEFT;&#xD;
+			path.path[i].direction = E_ACTION_LEFT;&#xD;
 		} else if (delta_y == 1) {&#xD;
-			path.path[i].direction == E_ACTION_UP;&#xD;
+			path.path[i].direction = E_ACTION_UP;&#xD;
 		} else if (delta_y == -1) {&#xD;
-			path.path[i].direction == E_ACTION_DOWN;&#xD;
+			path.path[i].direction = E_ACTION_DOWN;&#xD;
 		}&#xD;
 	}&#xD;
 }</body>
